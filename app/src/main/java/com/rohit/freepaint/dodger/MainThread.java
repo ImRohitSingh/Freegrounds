@@ -1,7 +1,10 @@
 package com.rohit.freepaint.dodger;
 
 import android.graphics.Canvas;
+import android.os.Build;
 import android.view.SurfaceHolder;
+
+import androidx.annotation.RequiresApi;
 
 public class MainThread extends Thread {
     private static final int MAX_FPS = 30;
@@ -21,6 +24,7 @@ public class MainThread extends Thread {
         this.running = running;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void run() {
         long startTime;

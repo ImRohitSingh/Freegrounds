@@ -1,16 +1,16 @@
 package com.rohit.freepaint.dodger;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.rohit.freepaint.R;
+import android.widget.Toast;
 
 public class DodgerMainActivity extends Activity {
+
+    private long backPressed = 0;
+    private Toast back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,20 @@ public class DodgerMainActivity extends Activity {
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
 
+        back = Toast.makeText(getApplicationContext(), "Press back again to go to Game menu", Toast.LENGTH_SHORT);
+
         setContentView(new GamePanel(this));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressed + 2000 > System.currentTimeMillis()) {
+            back.cancel();
+            super.onBackPressed();
+            finish();
+        } else {
+            back.show();
+        }
+        backPressed = System.currentTimeMillis();
     }
 }

@@ -17,8 +17,9 @@
         <activity android:name=".dodger.DodgerMainActivity"></activity>
         <activity
             android:name=".Dodger"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.noActionBar"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".killthemall.KillThemAllGameActivity"
