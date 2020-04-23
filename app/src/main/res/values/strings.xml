@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Freegrounds</string>
+    <string name="watermark">Quarantined</string>
+
+    <string name="radio_button_1">Paint</string>
+    <string name="radio_button_2">Anagram</string>
+    <string name="radio_button_3">Tic Tac Toe</string>
+    <string name="radio_button_4">Kill Them All!</string>
+    <string name="radio_button_5">Dodger</string>
+
+    <string name="single_player">Single Player</string>
+    <string name="online">Online</string>
+    <string name="about">Info</string>
+    <string name="exit">Exit</string>
+    <string name="back">Back</string>
+
+    <string name="about_tictactoe">
+        1. The game is played on a grid that is 3 squares by 3 squares.\n
+        2. You are X, your friend (or the app in Single Player mode) is O. Players take turns putting their marks in empty squares.\n
+        3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.\n
+        4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
+    </string>
+
+    <string name="start_new">Start</string>
+    <string name="brush">Brush</string>
+    <string name="erase">Erase</string>
+    <string name="save">Save</string>
+    <string name="paint">Paint</string>
+
+    <string name="highscore">High Score</string>
+
+</resources>

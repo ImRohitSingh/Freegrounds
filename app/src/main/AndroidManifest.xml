@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rohit.freepaint">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".dodger.DodgerMainActivity"></activity>
+        <activity
+            android:name=".Dodger"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.noActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".killthemall.KillThemAllGameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.noActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".killthemall.KillThemAllActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.noActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".tictactoe.AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".tictactoe.TicTacToe"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".tictactoe.SinglePlayerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".tictactoe.TicTacToe"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".tictactoe.TicTacToe"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".paint.FreePaint"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".FindAnagram"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".splashscreen.SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

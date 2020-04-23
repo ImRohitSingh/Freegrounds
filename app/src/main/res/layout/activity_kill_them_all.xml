@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".killthemall.KillThemAllActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/killthemallbackground"
+        android:scaleType="centerCrop"></ImageView>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_kta_title"
+        android:text="@string/radio_button_4"
+        android:textColor="@color/red"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/play"
+        android:layout_below="@+id/highscoretext"
+        android:fontFamily="@font/zorque"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_kta_features"
+        android:text="@string/exit"
+        android:textColor="@color/red"
+        android:layout_marginTop="40dp"
+        android:id="@+id/exit"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/play"
+        android:fontFamily="@font/zorque"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_kta_features"
+        android:text="@string/start_new"
+        android:textColor="@color/red"
+        android:id="@+id/play"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/zorque"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_kta_highscore"
+        android:text="@string/highscore"
+        android:textColor="@color/red"
+        android:id="@+id/highscoretext"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/zorque"></TextView>
+
+    <ImageView
+        android:layout_width="@dimen/size_kta_volume"
+        android:layout_height="@dimen/size_kta_volume"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:tint="@color/red"
+        android:src="@drawable/ic_volume_up_white_24dp"
+        android:id="@+id/volumeControl"></ImageView>
+
+</RelativeLayout>

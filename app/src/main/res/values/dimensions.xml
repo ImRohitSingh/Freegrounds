@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="highlighter_size">46dp</dimen>
+    <dimen name="watermark_size">22dp</dimen>
+
+    <dimen name="width_menu_button">200dp</dimen>
+    <dimen name="size_menu_button">20sp</dimen>
+
+    <dimen name="size_player_sign_image">100dp</dimen>
+    <dimen name="size_game_board">360dp</dimen>
+
+    <dimen name="size_kta_title">64sp</dimen>
+    <dimen name="size_kta_features">44sp</dimen>
+    <dimen name="size_kta_highscore">24sp</dimen>
+    <dimen name="size_kta_volume">36dp</dimen>
+
+    <dimen name="color_width">27dp</dimen>
+
+</resources>
