@@ -60,4 +60,10 @@ public class SigninLayout extends AppCompatDialogFragment {
 
         return builder.create();
     }
+
+    @Override
+    public void onCancel(@NonNull DialogInterface dialog) {
+        System.exit(0);
+        super.onCancel(dialog);
+    }
 }

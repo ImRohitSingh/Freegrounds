@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
-import android.widget.Toast;
 
 import com.rohit.freepaint.R;
 
@@ -98,8 +97,8 @@ public class ObstacleManager {
         if (prefs.getInt("dodgerhighscore", 0) < score) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("dodgerhighscore", score);
-            Toast.makeText(Constants.CURRENT_CONTEXT, "Reached New Highscore", Toast.LENGTH_SHORT);
             editor.apply();
+            GameplayScene.HIGH_SCORE = 1;
         }
     }
 }

@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 public class GameplayScene implements Scene {
 
     private Context activity;
+    public static int HIGH_SCORE;
 
     private Rect r = new Rect();
 
@@ -34,6 +35,8 @@ public class GameplayScene implements Scene {
 
         this.activity = activity;
 
+        HIGH_SCORE = 0;
+
         obstacleManager = new ObstacleManager(activity, 200, 350, 75, Color.BLACK);
     }
 
@@ -43,6 +46,7 @@ public class GameplayScene implements Scene {
         player.update(playerPoint);
         obstacleManager = new ObstacleManager(activity, 200, 350, 75, Color.BLACK);
         movingPlayer = false;
+        HIGH_SCORE = 0;
     }
 
     @Override
@@ -68,9 +72,16 @@ public class GameplayScene implements Scene {
 
         if(gameOver) {
             Paint paint = new Paint();
+            paint.setColor(Color.argb(0.959f,17f, 122f, 192f));
+            if(HIGH_SCORE != 0) {
+                paint.setTextSize(80f);
+                drawCenterText(canvas, paint, "Congratulations!", -500);
+                drawCenterText(canvas, paint, "New High Score", -400);
+            }
             paint.setTextSize(150f);
-            paint.setColor(Color.argb(0.895f,64f, 129f, 175f));
-            drawCenterText(canvas, paint, "Game Over");
+            drawCenterText(canvas, paint, "Game Over", 0);
+            paint.setTextSize(70f);
+            drawCenterText(canvas, paint, "Tap to Play Again", 400);
         }
     }
 
@@ -103,14 +114,14 @@ public class GameplayScene implements Scene {
         }
     }
 
-    private void drawCenterText(Canvas canvas, Paint paint, String text) {
+    private void drawCenterText(Canvas canvas, Paint paint, String text, int yInc) {
         paint.setTextAlign(Paint.Align.LEFT);
         canvas.getClipBounds(r);
         int cHeight = r.height();
         int cWidth = r.width();
         paint.getTextBounds(text, 0, text.length(), r);
         float x = cWidth / 2f - r.width() / 2f - r.left;
-        float y = cHeight / 2f + r.height() / 2f - r.bottom;
+        float y = cHeight / 2f + r.height() / 2f - r.bottom + yInc;
         canvas.drawText(text, x, y, paint);
     }
 }
