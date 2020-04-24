@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +32,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
     private long backPressed = 0;
     private Toast back;
 
+    private MediaPlayer cheer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
         activePlayer = 1; // user is active player
         Player1 = new ArrayList<>();
         Player2 = new ArrayList<>();
+
+        cheer = MediaPlayer.create(getApplicationContext(), R.raw.cheer);
 
         back = Toast.makeText(getApplicationContext(), "Press back again to go back to Game menu", Toast.LENGTH_SHORT);
 
@@ -229,6 +234,11 @@ public class SinglePlayerActivity extends AppCompatActivity {
     }
 
     void ShowAlert(String Title){
+
+        if(playWithApp) {
+            cheer.start();
+        }
+
         AlertDialog.Builder b = new AlertDialog.Builder(this, R.style.TransparentDialog);
         b.setTitle(Title)
                 .setMessage("Start a new game?")

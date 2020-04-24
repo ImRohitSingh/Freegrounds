@@ -51,6 +51,7 @@ public class TicTacToe extends AppCompatActivity {
         if(backPressed + 2000 > System.currentTimeMillis()) {
             back.cancel();
             super.onBackPressed();
+            finish();
         } else {
             back.show();
         }

@@ -1,4 +1,4 @@
-package com.rohit.freepaint;
+package com.rohit.freepaint.dodger;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rohit.freepaint.dodger.DodgerMainActivity;
+import com.rohit.freepaint.MainActivity;
+import com.rohit.freepaint.R;
 
 public class Dodger extends AppCompatActivity {
 
@@ -45,8 +46,7 @@ public class Dodger extends AppCompatActivity {
     }
 
     public void start(View view) {
-        Intent intent = new Intent(getApplicationContext(), DodgerMainActivity.class);
-        startActivity(intent);
+        openDialog();
     }
 
     public void exit(View view) {
@@ -65,5 +65,10 @@ public class Dodger extends AppCompatActivity {
             back.show();
         }
         backPressed = System.currentTimeMillis();
+    }
+
+    private void openDialog() {
+        DodgerModalLayout modalLayout = new DodgerModalLayout();
+        modalLayout.show(getSupportFragmentManager(), "Choose Avatar");
     }
 }

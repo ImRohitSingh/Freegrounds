@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
+import android.widget.Toast;
+
+import com.rohit.freepaint.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,8 @@ public class ObstacleManager {
 
     private int score = 0;
 
+    MediaPlayer dead;
+
     public ObstacleManager(Context activity, int playerGap, int obstacleGap, int obstacleHeight, int color) {
         this.playerGap = playerGap;
         this.obstacleGap = obstacleGap;
@@ -35,6 +41,8 @@ public class ObstacleManager {
         startTime = initTime = System.currentTimeMillis();
 
         obstacles = new ArrayList<>();
+
+        dead = MediaPlayer.create(activity, R.raw.dodger_dead);
 
         populateObstacles();
     }
@@ -85,10 +93,12 @@ public class ObstacleManager {
     }
 
     public void updateHighScore() {
+        dead.start();
         SharedPreferences prefs = activity.getSharedPreferences("dodgergame", 0);
         if (prefs.getInt("dodgerhighscore", 0) < score) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("dodgerhighscore", score);
+            Toast.makeText(Constants.CURRENT_CONTEXT, "Reached New Highscore", Toast.LENGTH_SHORT);
             editor.apply();
         }
     }

@@ -10,7 +10,7 @@
     android:layout_weight="1"
     android:padding="5dp"
     android:background="@drawable/dodgerbackground"
-    tools:context=".Dodger">
+    tools:context=".dodger.Dodger">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                     fancy:fb_borderColor="@color/gray"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/black"
-                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_focusColor="@color/blackFocus"
                     fancy:fb_iconPosition="left"
                     fancy:fb_radius="30dp"
                     fancy:fb_text="@string/start_new"
@@ -94,7 +94,7 @@
                     fancy:fb_borderColor="@color/gray"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/black"
-                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_focusColor="@color/blackFocus"
                     fancy:fb_iconPosition="left"
                     fancy:fb_radius="30dp"
                     fancy:fb_text="@string/exit"

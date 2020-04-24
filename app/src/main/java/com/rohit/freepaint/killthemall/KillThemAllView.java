@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -36,6 +37,7 @@ public class KillThemAllView extends SurfaceView implements Runnable {
     private Flight flight;
     private KillThemAllGameActivity activity;
     private KillThemAllBackground background1, background2;
+    MediaPlayer die;
 
     public KillThemAllView(KillThemAllGameActivity activity, int screenX, int screenY) {
         super(activity);
@@ -43,6 +45,8 @@ public class KillThemAllView extends SurfaceView implements Runnable {
         this.activity = activity;
 
         prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
+
+        die = MediaPlayer.create(activity, R.raw.you_are_dead);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -181,7 +185,6 @@ public class KillThemAllView extends SurfaceView implements Runnable {
             }
 
             if (Rect.intersects(bird.getCollisionShape(), flight.getCollisionShape())) {
-
                 isGameOver = true;
                 return;
             }
@@ -204,6 +207,7 @@ public class KillThemAllView extends SurfaceView implements Runnable {
             canvas.drawText(score + "", screenX / 2f, 164, paint);
 
             if (isGameOver) {
+                die.start();
                 isPlaying = false;
                 canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
                 getHolder().unlockCanvasAndPost(canvas);
@@ -226,6 +230,9 @@ public class KillThemAllView extends SurfaceView implements Runnable {
     private void waitBeforeExiting() {
 
         try {
+            //sound = soundPool.load(activity, R.raw.cheer, 1);
+            //soundPool.play(sound, 1, 1, 0, 0, 1);
+            //die.start();
             Thread.sleep(3000);
             activity.startActivity(new Intent(activity, KillThemAllActivity.class));
             activity.finish();

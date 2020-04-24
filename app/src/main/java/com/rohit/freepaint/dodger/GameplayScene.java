@@ -68,7 +68,7 @@ public class GameplayScene implements Scene {
 
         if(gameOver) {
             Paint paint = new Paint();
-            paint.setTextSize(200f);
+            paint.setTextSize(150f);
             paint.setColor(Color.argb(0.895f,64f, 129f, 175f));
             drawCenterText(canvas, paint, "Game Over");
         }
@@ -81,6 +81,7 @@ public class GameplayScene implements Scene {
 
     @Override
     public void receiveTouch(MotionEvent event) {
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if(!gameOver && player.getRectangle().contains((int) event.getX(), (int) event.getY())) {
