@@ -59,7 +59,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".FindAnagram"
+            android:name=".anagram.FindAnagram"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity

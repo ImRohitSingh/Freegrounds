@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.rohit.freepaint.anagram.FindAnagram;
 import com.rohit.freepaint.dodger.Dodger;
 import com.rohit.freepaint.killthemall.KillThemAllActivity;
 import com.rohit.freepaint.paint.FreePaint;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         dodger = MediaPlayer.create(getApplicationContext(), R.raw.dodger);
         have_a_great_time = MediaPlayer.create(getApplicationContext(), R.raw.have_a_great_time);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
     }
 
     public void onChoosingPaint(View view) {
@@ -59,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onChoosingAnagram(View view) {
-        //progressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(getApplicationContext(), "Feature under development", Toast.LENGTH_SHORT).show();
-        /*new Handler().postDelayed(new Runnable() {
+        progressBar.setVisibility(View.VISIBLE);
+        
+        new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 progressBar.setVisibility(View.GONE);
                 Intent intent = new Intent(getApplicationContext(), FindAnagram.class);
                 startActivity(intent);
-            }}, 2500);*/
+            }}, 1500);
     }
 
     public void onChoosingTicTacToe(View view) {
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             have_a_great_time.start();
             back.cancel();
             super.onBackPressed();
+            finish();
         } else {
             back.show();
         }

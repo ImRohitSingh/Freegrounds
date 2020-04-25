@@ -17,4 +17,11 @@
 
     <dimen name="color_width">32dp</dimen>
 
+    <dimen name="guessword">30dp</dimen>
+    <dimen name="margintop">60dp</dimen>
+    <dimen name="wordsize">46dp</dimen>
+    <dimen name="widthcheckbutton">200dp</dimen>
+    <dimen name="label">30dp</dimen>
+    <dimen name="title">40dp</dimen>
+
 </resources>

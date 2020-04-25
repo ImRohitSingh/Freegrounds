@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:layout_weight="1"
     android:padding="5dp"
-    android:background="@drawable/dodgerbackground"
+    android:background="@drawable/dodgerbg"
     tools:context=".dodger.Dodger">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -70,7 +70,7 @@
                     android:layout_marginTop="20dp"
                     fancy:fb_textSize="@dimen/size_menu_button"
                     fancy:fb_textFont="fonts/zorque.ttf"
-                    fancy:fb_borderColor="@color/gray"
+                    fancy:fb_borderColor="@color/white"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/black"
                     fancy:fb_focusColor="@color/blackFocus"
@@ -91,7 +91,7 @@
                     android:layout_marginTop="20dp"
                     fancy:fb_textSize="@dimen/size_menu_button"
                     fancy:fb_textFont="fonts/zorque.ttf"
-                    fancy:fb_borderColor="@color/gray"
+                    fancy:fb_borderColor="@color/white"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/black"
                     fancy:fb_focusColor="@color/blackFocus"

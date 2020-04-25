@@ -2,6 +2,7 @@ package com.rohit.freepaint.killthemall;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -47,6 +48,7 @@ public class KillThemAllGameActivity extends AppCompatActivity {
         if(backPressed + 2000 > System.currentTimeMillis()) {
             back.cancel();
             super.onBackPressed();
+            startActivity(new Intent(getApplicationContext(), KillThemAllActivity.class));
             finish();
         } else {
             back.show();

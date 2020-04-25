@@ -29,6 +29,7 @@ public class TicTacToe extends AppCompatActivity {
     public void startGame_singlePlayer(View view) {
         Intent intent = new Intent(getApplicationContext(), SinglePlayerActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void startGameOnline(View view) {

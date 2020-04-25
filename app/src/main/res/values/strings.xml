@@ -29,4 +29,7 @@
 
     <string name="highscore">High Score</string>
 
+    <string name="check">Check</string>
+    <string name="newword">New</string>
+
 </resources>

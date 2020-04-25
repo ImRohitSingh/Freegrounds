@@ -37,6 +37,7 @@ public class KillThemAllActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), KillThemAllGameActivity.class));
+                finish();
             }
         });
 

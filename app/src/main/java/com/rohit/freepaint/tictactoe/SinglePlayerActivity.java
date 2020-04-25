@@ -72,6 +72,14 @@ public class SinglePlayerActivity extends AppCompatActivity {
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_info)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Intent intent = new Intent(getApplicationContext(), TicTacToe.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
                 .show();
     }
 
@@ -257,6 +265,14 @@ public class SinglePlayerActivity extends AppCompatActivity {
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_info)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Intent intent = new Intent(getApplicationContext(), TicTacToe.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
                 .show();
     }
 
@@ -265,6 +281,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
         if(backPressed + 2000 > System.currentTimeMillis()) {
             back.cancel();
             super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), TicTacToe.class);
+            startActivity(intent);
             finish();
         } else {
             back.show();
