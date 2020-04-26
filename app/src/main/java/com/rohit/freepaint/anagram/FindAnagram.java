@@ -164,6 +164,7 @@ public class FindAnagram extends AppCompatActivity {
         stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gameActive = false;
                 updateFinalHighScore();
                 timer.cancel();
                 Toast.makeText(getApplicationContext(), "Total Score: " + score, Toast.LENGTH_SHORT).show();
@@ -182,6 +183,7 @@ public class FindAnagram extends AppCompatActivity {
                 clueBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.GONE);
                 pb.setVisibility(View.VISIBLE);
+                aGuess.setVisibility(View.VISIBLE);
                 loadGame();
             }
         });
@@ -301,7 +303,7 @@ public class FindAnagram extends AppCompatActivity {
 
     private void checkGuess() {
         if(aGuess.getText().toString().equalsIgnoreCase(currWord)) {
-            if(muteStatus == 0) {
+            if(gameActive && muteStatus == 0) {
                 rightGuess.start();
             }
             score += 3;
@@ -311,13 +313,13 @@ public class FindAnagram extends AppCompatActivity {
             if((3 - attempt) > 0) {
                 Toast.makeText(getApplicationContext(), "Remaining Attempts: " + (3 - attempt), Toast.LENGTH_SHORT).show();
             } else {
-                if(muteStatus == 0) {
+                if(gameActive && muteStatus == 0) {
                     wrongGuess.start();
                 }
                 score -= 2;
             }
         }
-        if(attempt > 2 || timerTime == 1 && gameActive) {
+        if(gameActive && (attempt > 2 || timerTime == 1)) {
             loadGame();
         }
     }
@@ -337,7 +339,7 @@ public class FindAnagram extends AppCompatActivity {
         public void run() {
             //This method runs in the same thread as the UI.
             //Do something to the UI thread here
-            if(timerTime == 1 && gameActive) {
+            if(gameActive && timerTime == 1) {
                 if(muteStatus == 0) {
                     timeOver.start();
                 }
