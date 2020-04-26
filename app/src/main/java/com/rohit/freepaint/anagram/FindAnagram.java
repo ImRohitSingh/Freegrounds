@@ -178,7 +178,7 @@ public class FindAnagram extends AppCompatActivity {
 
         stopBtn.setVisibility(View.VISIBLE);
         playBtn.setVisibility(View.GONE);
-        pb.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#4081af")));
+        pb.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#006400")));
 
         if(timer != null) {
             timer.cancel();

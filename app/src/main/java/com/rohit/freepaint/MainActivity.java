@@ -1,6 +1,7 @@
 package com.rohit.freepaint;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer dodger;
     MediaPlayer have_a_great_time;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
         have_a_great_time = MediaPlayer.create(getApplicationContext(), R.raw.have_a_great_time);
 
         back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefreshmain);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        });
     }
 
     public void onChoosingPaint(View view) {

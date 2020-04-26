@@ -12,169 +12,177 @@
     android:padding="5dp"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/swiperefreshmain">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_marginTop="5dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/appuser"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:layout_height="match_parent">
 
-            <!--<ImageView
-                android:layout_width="@dimen/width_menu_button"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_marginTop="5dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/appuser"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/logoapp2"></ImageView>-->
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/freepaint"
-                android:layout_width="@dimen/width_menu_button"
+                <!--<ImageView
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logoapp2"></ImageView>-->
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/freepaint"
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:onClick="onChoosingPaint"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/black"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="@string/radio_button_1"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textFont="fonts/zorque.ttf"
+                    fancy:fb_textSize="@dimen/size_menu_button" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/findanagram"
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onChoosingAnagram"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/black"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="@string/radio_button_2"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textFont="fonts/zorque.ttf"
+                    fancy:fb_textSize="@dimen/size_menu_button" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/tictactoe"
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onChoosingTicTacToe"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/black"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="@string/radio_button_3"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textFont="fonts/zorque.ttf"
+                    fancy:fb_textSize="@dimen/size_menu_button" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/killthemall"
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onChoosingKillThemAll"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/black"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="@string/radio_button_4"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textFont="fonts/zorque.ttf"
+                    fancy:fb_textSize="@dimen/size_menu_button" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/dodger"
+                    android:layout_width="@dimen/width_menu_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:onClick="onChoosingDodger"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/black"
+                    fancy:fb_focusColor="@color/black"
+                    fancy:fb_iconPosition="left"
+                    fancy:fb_radius="30dp"
+                    fancy:fb_text="@string/radio_button_5"
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textFont="fonts/zorque.ttf"
+                    fancy:fb_textSize="@dimen/size_menu_button" />
+
+            </LinearLayout>
+
+            <android.widget.ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onChoosingPaint"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="@color/black"
-                fancy:fb_focusColor="@color/black"
-                fancy:fb_iconPosition="left"
-                fancy:fb_radius="30dp"
-                fancy:fb_text="@string/radio_button_1"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textFont="fonts/zorque.ttf"
-                fancy:fb_textSize="@dimen/size_menu_button" />
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red"
+                android:visibility="gone">
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/findanagram"
-                android:layout_width="@dimen/width_menu_button"
+            </android.widget.ProgressBar>
+
+            <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:onClick="onChoosingAnagram"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="@color/black"
-                fancy:fb_focusColor="@color/black"
-                fancy:fb_iconPosition="left"
-                fancy:fb_radius="30dp"
-                fancy:fb_text="@string/radio_button_2"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textFont="fonts/zorque.ttf"
-                fancy:fb_textSize="@dimen/size_menu_button" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/zorque"
+                android:gravity="center_horizontal"
+                android:text="@string/watermark"
+                android:id="@+id/quarantined"
+                android:textColor="@color/red"
+                android:textSize="@dimen/watermark_size" />
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/tictactoe"
-                android:layout_width="@dimen/width_menu_button"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:onClick="onChoosingTicTacToe"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="@color/black"
-                fancy:fb_focusColor="@color/black"
-                fancy:fb_iconPosition="left"
-                fancy:fb_radius="30dp"
-                fancy:fb_text="@string/radio_button_3"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textFont="fonts/zorque.ttf"
-                fancy:fb_textSize="@dimen/size_menu_button" />
+        </RelativeLayout>
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/killthemall"
-                android:layout_width="@dimen/width_menu_button"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:onClick="onChoosingKillThemAll"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="@color/black"
-                fancy:fb_focusColor="@color/black"
-                fancy:fb_iconPosition="left"
-                fancy:fb_radius="30dp"
-                fancy:fb_text="@string/radio_button_4"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textFont="fonts/zorque.ttf"
-                fancy:fb_textSize="@dimen/size_menu_button" />
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/dodger"
-                android:layout_width="@dimen/width_menu_button"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:onClick="onChoosingDodger"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
-                fancy:fb_defaultColor="@color/black"
-                fancy:fb_focusColor="@color/black"
-                fancy:fb_iconPosition="left"
-                fancy:fb_radius="30dp"
-                fancy:fb_text="@string/radio_button_5"
-                fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textFont="fonts/zorque.ttf"
-                fancy:fb_textSize="@dimen/size_menu_button" />
-
-        </LinearLayout>
-
-        <android.widget.ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/red"
-            android:visibility="gone">
-
-        </android.widget.ProgressBar>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/zorque"
-            android:gravity="center_horizontal"
-            android:text="@string/watermark"
-            android:id="@+id/quarantined"
-            android:textColor="@color/red"
-            android:textSize="@dimen/watermark_size" />
-
-    </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>
