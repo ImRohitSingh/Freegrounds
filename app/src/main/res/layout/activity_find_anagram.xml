@@ -36,22 +36,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/sendicon"
-                android:id="@+id/b_check"
-                android:visibility="gone"></ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="100dp"
             android:padding="15dp">
@@ -62,6 +46,17 @@
                 android:text="@string/radio_button_2"
                 android:textSize="42dp"
                 android:fontFamily="@font/zorque"></TextView>
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/aGuess"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:id="@+id/progress_bar"
+                android:visibility="gone"
+                android:progressTint="@color/blue">
+            </ProgressBar>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,10 +70,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="Guess the word!"
                 android:id="@+id/clue"
                 android:textSize="26dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/zorque"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/wordsize"
+                android:fontFamily="@font/zorque"
+                android:layout_marginTop="20dp"
+                android:id="@+id/aWord"></TextView>
+
         </LinearLayout>
 
         </LinearLayout>
@@ -123,42 +131,11 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="Guess The Word!"
-                android:textColor="@color/white"
-                android:textSize="@dimen/title"
-                android:fontFamily="@font/zorque"
-                android:id="@+id/aTitle"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="@dimen/wordsize"
-                android:fontFamily="@font/zorque"
-                android:layout_marginTop="20dp"
-                android:id="@+id/aWord"></TextView>
-
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/aGuess"
-                android:layout_marginTop="@dimen/margintop"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:id="@+id/progress_bar">
-            </ProgressBar>
-
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/edittext"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:hint="Guess here"
@@ -166,10 +143,18 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/wordsize"
                 android:ems="10"
-                android:layout_below="@+id/aWord"
                 android:layout_marginTop="@dimen/margintop"
                 android:inputType="textPersonName"
-                android:id="@+id/aGuess"></EditText>
+                android:id="@+id/aGuess"
+                android:imeOptions="actionSend"></EditText>
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/sendicon"
+                android:id="@+id/b_check"
+                android:visibility="gone"></ImageView>
 
         </LinearLayout>
 

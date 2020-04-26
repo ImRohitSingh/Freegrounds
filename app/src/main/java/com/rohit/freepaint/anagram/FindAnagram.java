@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +26,6 @@ import java.util.TimerTask;
 public class FindAnagram extends AppCompatActivity {
 
     private TextView aWord;
-    private TextView aTitle;
     private EditText aGuess;
     private ImageView playBtn;
     private ImageView stopBtn;
@@ -69,13 +70,11 @@ public class FindAnagram extends AppCompatActivity {
         setContentView(R.layout.activity_find_anagram);
 
         aWord = (TextView) findViewById(R.id.aWord);
-        aTitle = (TextView) findViewById(R.id.aTitle);
         aGuess = (EditText) findViewById(R.id.aGuess);
         playBtn = (ImageView) findViewById(R.id.playbutton);
         stopBtn = (ImageView) findViewById(R.id.stopbutton);
         clueBtn = (ImageView) findViewById(R.id.cluebtn);
 
-        //b_check = (FancyButton) findViewById(R.id.b_check);
         b_check = (ImageView) findViewById(R.id.b_check);
 
         pb = (ProgressBar) findViewById(R.id.progress_bar);
@@ -93,7 +92,7 @@ public class FindAnagram extends AppCompatActivity {
 
         random = new Random();
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to go to Home", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         b_check.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +121,7 @@ public class FindAnagram extends AppCompatActivity {
                 stopBtn.setVisibility(View.VISIBLE);
                 clueBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.GONE);
-                aTitle.setVisibility(View.GONE);
+                pb.setVisibility(View.VISIBLE);
                 loadGame();
             }
         });
@@ -179,8 +178,12 @@ public class FindAnagram extends AppCompatActivity {
 
         stopBtn.setVisibility(View.VISIBLE);
         playBtn.setVisibility(View.GONE);
+        pb.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#4081af")));
 
-        timer = new Timer();
+        if(timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
 
         gameActive = true;
 
@@ -208,6 +211,9 @@ public class FindAnagram extends AppCompatActivity {
                 if(counter == 100) {
                     timer.cancel();
                     timerTime = 1;
+                }
+                if(counter == 75) {
+                    pb.setProgressTintList(ColorStateList.valueOf(Color.RED));
                 }
             }
         };
@@ -257,8 +263,10 @@ public class FindAnagram extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(backPressed + 2000 > System.currentTimeMillis()) {
-            Toast.makeText(getApplicationContext(), "Total Score: " + score, Toast.LENGTH_SHORT).show();
-            updateFinalHighScore();
+            if(gameActive) {
+                Toast.makeText(getApplicationContext(), "Total Score: " + score, Toast.LENGTH_SHORT).show();
+                updateFinalHighScore();
+            }
             back.cancel();
             super.onBackPressed();
             finish();

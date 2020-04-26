@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onChoosingAnagram(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        
+
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 progressBar.setVisibility(View.GONE);
