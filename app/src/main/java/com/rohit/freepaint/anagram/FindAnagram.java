@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -31,6 +34,10 @@ public class FindAnagram extends AppCompatActivity {
     private ImageView stopBtn;
     private ImageView clueBtn;
 
+    private ImageView muteBtn;
+    private ImageView unmuteBtn;
+    private int muteStatus;
+
     private ImageView b_check;
 
     private TextView currScore;
@@ -43,11 +50,26 @@ public class FindAnagram extends AppCompatActivity {
     private int timerTime = 0;
     private long startTime = 0;
 
-    private String[] dictionary = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
-            "Twelve", "Thirteen", "Anagram", "Chemistry", "Physics", "Geomtery", "India", "Mathematics", "Squirrel", "Champion",
+    private String[] dictionary = { "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
+            "Twelve", "Thirteen", "Anagram", "Chemistry", "Physics", "Geometry", "India", "Mathematics", "Squirrel", "Champion",
             "Xerox", "Mango", "Park", "Taste", "Test", "Therapist", "Message", "Eclipse", "Sun", "Moon", "Universe",
             "Intel", "Knowledge", "Java", "Tea", "Coffee", "Drink", "Toast", "Bread", "Alphabet", "Cheers", "Draw",
-            "Window", "Door" };
+            "Window", "Door", "Sunshine", "Abstract", "Tulip", "Lily", "Lotus", "January", "October", "Rose", "History",
+            "Geography", "Body", "Human", "Man", "Woman", "Leaves", "Master", "English", "Literature", "Studio", "Virus", "Check",
+            "Action", "Director", "Jump", "Exercise", "Duty", "Hundred", "Thousand", "Detail", "Series", "High", "Logic", "Dictionary",
+            "Half", "Things", "Substance", "World", "Objects", "Pulse", "Monk", "Monkey", "Think", "Mobile", "Internet", "Phone",
+            "Double", "Pizza", "Avenue", "Performance", "Space", "Stop", "Vehicle", "Behind", "Above", "Below", "Beneath", "Trophy",
+            "Success", "Motto", "Failure", "Death", "File", "Life", "Bride", "Girl", "Football", "Cricket", "Sports", "Excel",
+            "Computer", "Keyboard", "Mouse", "Process", "Modem", "Planet", "System", "Stomach", "Chest", "Hand", "Foot",
+            "Convocation", "Hockey", "Shirt", "Pant", "Socks", "Shoes", "Shock", "Patience", "Hospital", "Building", "Perfume",
+            "Rain", "Mountain", "Nature", "Ocean", "Island", "Palace", "Factory", "Profile", "Version", "Control", "Screen", "Paint",
+            "Dodge", "Activity", "Main", "Orange", "Apple", "Potato", "Guava", "Gourd", "Banana", "Helicopter", "Aeroplane",
+            "Capture", "Shoot", "Resource", "Manager", "Lecture", "Professor", "Onion", "Capsicum", "Ginger", "Heist", "Borrow",
+            "Date", "Meet", "Greet", "Typing", "Search", "Output", "Rainbow", "Project", "Literature", "Anatomy", "Emergency",
+            "Event", "Elements", "Compounds", "Execution", "Terminal", "Medicine", "Sunflower", "Petals", "Bestow", "Plastic",
+            "Backpack", "Necklace", "Bracelet", "Shampoo", "August", "Independence", "Intellect", "Clever", "Foolish",
+            "Update", "Rupees", "National", "International", "Ratio", "Interest", "Discount", "Derivative", "Integration",
+            "Blind", "Beautiful", "Pursuit", "Happiness", "Kindness", "Bliss", "Research", "Fracture", "Design"};
     private String currWord;
 
     private Random random;
@@ -64,6 +86,10 @@ public class FindAnagram extends AppCompatActivity {
 
     private int highScoreUpdated;
 
+    private MediaPlayer timeOver;
+    private MediaPlayer wrongGuess;
+    private MediaPlayer rightGuess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +100,9 @@ public class FindAnagram extends AppCompatActivity {
         playBtn = (ImageView) findViewById(R.id.playbutton);
         stopBtn = (ImageView) findViewById(R.id.stopbutton);
         clueBtn = (ImageView) findViewById(R.id.cluebtn);
+
+        muteBtn = (ImageView) findViewById(R.id.mutebtn);
+        unmuteBtn = (ImageView) findViewById(R.id.unmutebtn);
 
         b_check = (ImageView) findViewById(R.id.b_check);
 
@@ -86,6 +115,13 @@ public class FindAnagram extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("anagram", MODE_PRIVATE);
         highScore.setText("HighScore: " + prefs.getInt("anagramhighscore", 0));
 
+        muteStatus = getMuteStatus();
+        if(muteStatus == 0) {
+            muteBtn.setVisibility(View.VISIBLE);
+        } else {
+            unmuteBtn.setVisibility(View.VISIBLE);
+        }
+
         gameActive = false;
 
         highScoreUpdated = 0;
@@ -93,6 +129,30 @@ public class FindAnagram extends AppCompatActivity {
         random = new Random();
 
         back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
+
+        timeOver = MediaPlayer.create(getApplicationContext(), R.raw.tumble1);
+        wrongGuess = MediaPlayer.create(getApplicationContext(), R.raw.tumble2);
+        rightGuess = MediaPlayer.create(getApplicationContext(), R.raw.cheer);
+
+        aGuess.setOnEditorActionListener(editorListener);
+
+        muteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.VISIBLE);
+                muteBtn.setVisibility(View.GONE);
+                updateMuteStatus(1);
+            }
+        });
+
+        unmuteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.GONE);
+                muteBtn.setVisibility(View.VISIBLE);
+                updateMuteStatus(0);
+            }
+        });
 
         b_check.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +210,19 @@ public class FindAnagram extends AppCompatActivity {
 
     }
 
+    private TextView.OnEditorActionListener editorListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            switch (actionId) {
+                case EditorInfo
+                        .IME_ACTION_SEND:
+                    checkGuess();
+                break;
+            }
+            return false;
+        }
+    };
+
     private String generateStars(int length) {
         String stars = "";
         for(int i = 1; i <= length; ++i) {
@@ -160,7 +233,12 @@ public class FindAnagram extends AppCompatActivity {
 
     private void loadGame() {
         currWord = dictionary[random.nextInt(dictionary.length)];
-        aWord.setText(shuffledWord(currWord));
+        String shuffled = shuffledWord(currWord);
+        List<String> words = Arrays.asList(dictionary);
+        while(words.contains(shuffled)) {
+            shuffled = shuffledWord(currWord);
+        }
+        aWord.setText(shuffled);
 
         startTime = System.currentTimeMillis();
 
@@ -223,6 +301,9 @@ public class FindAnagram extends AppCompatActivity {
 
     private void checkGuess() {
         if(aGuess.getText().toString().equalsIgnoreCase(currWord)) {
+            if(muteStatus == 0) {
+                rightGuess.start();
+            }
             score += 3;
             loadGame();
         } else {
@@ -230,6 +311,9 @@ public class FindAnagram extends AppCompatActivity {
             if((3 - attempt) > 0) {
                 Toast.makeText(getApplicationContext(), "Remaining Attempts: " + (3 - attempt), Toast.LENGTH_SHORT).show();
             } else {
+                if(muteStatus == 0) {
+                    wrongGuess.start();
+                }
                 score -= 2;
             }
         }
@@ -254,6 +338,9 @@ public class FindAnagram extends AppCompatActivity {
             //This method runs in the same thread as the UI.
             //Do something to the UI thread here
             if(timerTime == 1 && gameActive) {
+                if(muteStatus == 0) {
+                    timeOver.start();
+                }
                 --score;
                 loadGame();
             }
@@ -296,6 +383,19 @@ public class FindAnagram extends AppCompatActivity {
             editor.putInt("anagramhighscore", score);
             editor.apply();
         }
+    }
+
+    private int getMuteStatus() {
+        SharedPreferences prefs = getSharedPreferences("anagram", 0);
+        return prefs.getInt("anagrammute", 0);
+    }
+
+    private void updateMuteStatus(int status) {
+        muteStatus = status;
+        SharedPreferences prefs = getSharedPreferences("anagram", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("anagrammute", status);
+        editor.apply();
     }
 
 }

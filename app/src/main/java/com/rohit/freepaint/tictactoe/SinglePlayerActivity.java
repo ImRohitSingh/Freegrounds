@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
     private Toast back;
 
     private MediaPlayer cheer;
+    private MediaPlayer defeat;
+    private MediaPlayer draw;
+
+    private int matchStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
         Player2 = new ArrayList<>();
 
         cheer = MediaPlayer.create(getApplicationContext(), R.raw.cheer);
+        defeat = MediaPlayer.create(getApplicationContext(), R.raw.tumble3);
+        draw = MediaPlayer.create(getApplicationContext(), R.raw.its_a_draw);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to go back to Game menu", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         AlertDialog.Builder b = new AlertDialog.Builder(this, R.style.TransparentDialog);
         b.setTitle("Please Confirm?")
@@ -153,8 +160,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
 
         if(winner != 0 && gameState == 1){
             if(winner == 1){
+                matchStatus = 1;
                 ShowAlert(winningMessage);
             }else if(winner == 2){
+                matchStatus = 2;
                 ShowAlert(losingMessage);
             }
             gameState = 2;
@@ -172,6 +181,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
             if(emptyBlocks.size() == 0) {
                 //CheckWinner();
                 if(gameState == 1) {
+                    matchStatus = 3;
                     AlertDialog.Builder b = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
                     ShowAlert(" Its a Draw.");
                 }
@@ -192,6 +202,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
         if(emptyBlocks.size() == 0) {
             CheckWinner();
             if(gameState == 1) {
+                matchStatus = 3;
                 AlertDialog.Builder b = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
                 ShowAlert(" Its a Draw.");
             }
@@ -244,7 +255,15 @@ public class SinglePlayerActivity extends AppCompatActivity {
     void ShowAlert(String Title){
 
         if(playWithApp) {
-            cheer.start();
+            if(getMuteStatus() == 0) {
+                if(matchStatus == 1) {
+                    cheer.start();
+                } else if(matchStatus == 2) {
+                    defeat.start();
+                } else if(matchStatus == 3) {
+                    draw.start();
+                }
+            }
         }
 
         AlertDialog.Builder b = new AlertDialog.Builder(this, R.style.TransparentDialog);
@@ -288,5 +307,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
             back.show();
         }
         backPressed = System.currentTimeMillis();
+    }
+
+    private int getMuteStatus() {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        return prefs.getInt("tttgamemmute", 0);
     }
 }

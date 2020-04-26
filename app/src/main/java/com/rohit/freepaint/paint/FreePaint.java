@@ -38,7 +38,7 @@ public class FreePaint extends AppCompatActivity implements View.OnClickListener
         save = (ImageButton) findViewById(R.id.save_btn);
         exit = (ImageButton) findViewById(R.id.exit_btn);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         LinearLayout paintLayout = (LinearLayout) findViewById(R.id.paint_colors);
         currPaint = (ImageButton) paintLayout.getChildAt(0);

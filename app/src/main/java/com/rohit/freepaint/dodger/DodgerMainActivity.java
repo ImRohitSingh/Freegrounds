@@ -24,7 +24,7 @@ public class DodgerMainActivity extends Activity {
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to go to Game menu", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         setContentView(new GamePanel(this));
     }

@@ -21,7 +21,7 @@ public class KillThemAllGameActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to go back to Game menu", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);

@@ -3,8 +3,10 @@ package com.rohit.freepaint.tictactoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.rohit.freepaint.MainActivity;
@@ -18,12 +20,42 @@ public class TicTacToe extends AppCompatActivity {
 
     private Toast back;
 
+    private ImageView muteBtn;
+    private ImageView unmuteBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+        muteBtn = (ImageView) findViewById(R.id.tttmutebtn);
+        unmuteBtn = (ImageView) findViewById(R.id.tttunmutebtn);
+
+        if(getMuteStatus() == 0) {
+            muteBtn.setVisibility(View.VISIBLE);
+        } else {
+            unmuteBtn.setVisibility(View.VISIBLE);
+        }
+
+        muteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.VISIBLE);
+                muteBtn.setVisibility(View.GONE);
+                updateMuteStatus(1);
+            }
+        });
+
+        unmuteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.GONE);
+                muteBtn.setVisibility(View.VISIBLE);
+                updateMuteStatus(0);
+            }
+        });
+
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
     }
 
     public void startGame_singlePlayer(View view) {
@@ -57,5 +89,17 @@ public class TicTacToe extends AppCompatActivity {
             back.show();
         }
         backPressed = System.currentTimeMillis();
+    }
+
+    private int getMuteStatus() {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        return prefs.getInt("tttgamemmute", 0);
+    }
+
+    private void updateMuteStatus(int status) {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("tttgamemmute", status);
+        editor.apply();
     }
 }

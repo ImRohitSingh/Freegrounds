@@ -126,6 +126,28 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/watermark_size" />
 
+            <ImageView
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/unmute"
+                android:id="@+id/dodgerunmutebtn"
+                android:visibility="gone"></ImageView>
+
+            <ImageView
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/mute"
+                android:id="@+id/dodgermutebtn"
+                android:visibility="gone"></ImageView>
+
         </RelativeLayout>
 
 

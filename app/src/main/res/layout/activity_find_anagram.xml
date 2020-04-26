@@ -103,6 +103,26 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentRight="true"
+                android:src="@drawable/unmute"
+                android:id="@+id/unmutebtn"
+                android:visibility="gone"></ImageView>
+
+            <ImageView
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/mute"
+                android:id="@+id/mutebtn"
+                android:visibility="gone"></ImageView>
+
+            <ImageView
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentRight="true"
                 android:src="@drawable/bulbicon"
                 android:id="@+id/cluebtn"
                 android:visibility="gone"></ImageView>

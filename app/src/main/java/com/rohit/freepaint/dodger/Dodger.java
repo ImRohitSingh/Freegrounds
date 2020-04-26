@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,9 @@ public class Dodger extends AppCompatActivity {
     private long backPressed = 0;
     private Toast back;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private ImageView muteBtn;
+    private ImageView unmuteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,33 @@ public class Dodger extends AppCompatActivity {
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
 
+        muteBtn = (ImageView) findViewById(R.id.dodgermutebtn);
+        unmuteBtn = (ImageView) findViewById(R.id.dodgerunmutebtn);
+
+        if(getMuteStatus() == 0) {
+            muteBtn.setVisibility(View.VISIBLE);
+        } else {
+            unmuteBtn.setVisibility(View.VISIBLE);
+        }
+
+        muteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.VISIBLE);
+                muteBtn.setVisibility(View.GONE);
+                updateMuteStatus(1);
+            }
+        });
+
+        unmuteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unmuteBtn.setVisibility(View.GONE);
+                muteBtn.setVisibility(View.VISIBLE);
+                updateMuteStatus(0);
+            }
+        });
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -42,7 +73,7 @@ public class Dodger extends AppCompatActivity {
             }
         });
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
     }
 
     public void start(View view) {
@@ -70,5 +101,17 @@ public class Dodger extends AppCompatActivity {
     private void openDialog() {
         DodgerModalLayout modalLayout = new DodgerModalLayout();
         modalLayout.show(getSupportFragmentManager(), "Choose Avatar");
+    }
+
+    private int getMuteStatus() {
+        SharedPreferences prefs = getSharedPreferences("dodgergame", 0);
+        return prefs.getInt("dodgermmute", 0);
+    }
+
+    private void updateMuteStatus(int status) {
+        SharedPreferences prefs = getSharedPreferences("dodgergame", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("dodgermmute", status);
+        editor.apply();
     }
 }

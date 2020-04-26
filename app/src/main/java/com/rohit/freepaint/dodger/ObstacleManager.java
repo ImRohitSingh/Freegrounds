@@ -67,9 +67,9 @@ public class ObstacleManager {
     }
 
     public void update() {
-        int elapsedTime = (int) (System.currentTimeMillis() - startTime);
+        int elapsedTime = (int) (System.currentTimeMillis() - startTime - 2);  // -10 to slow things down
         startTime = System.currentTimeMillis();
-        float speed = (float) (Math.sqrt(1 + (startTime - initTime) / 2000)) * Constants.SCREEN_HEIGHT / 10000.0f; // 1000 = fast, 2000 = slow
+        float speed = (float) (Math.sqrt(1 + (startTime - initTime) / 5000)) * Constants.SCREEN_HEIGHT / 10000.0f; // 1000 = fast, 2000 = slow
         for(Obstacle obstacle: obstacles) {
             obstacle.incrementY(speed * elapsedTime);
         }
@@ -92,7 +92,9 @@ public class ObstacleManager {
     }
 
     public void updateHighScore() {
-        dead.start();
+        if(getMuteStatus() == 0) {
+            dead.start();
+        }
         SharedPreferences prefs = activity.getSharedPreferences("dodgergame", 0);
         if (prefs.getInt("dodgerhighscore", 0) < score) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -100,5 +102,10 @@ public class ObstacleManager {
             editor.apply();
             GameplayScene.HIGH_SCORE = 1;
         }
+    }
+
+    private int getMuteStatus() {
+        SharedPreferences prefs = activity.getSharedPreferences("dodgergame", 0);
+        return prefs.getInt("dodgermmute", 0);
     }
 }

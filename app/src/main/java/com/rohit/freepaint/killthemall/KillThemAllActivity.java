@@ -31,7 +31,7 @@ public class KillThemAllActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_kill_them_all);
 
-        back = Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+        back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
