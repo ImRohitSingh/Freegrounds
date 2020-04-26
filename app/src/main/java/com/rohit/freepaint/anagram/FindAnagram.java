@@ -89,6 +89,7 @@ public class FindAnagram extends AppCompatActivity {
     private MediaPlayer timeOver;
     private MediaPlayer wrongGuess;
     private MediaPlayer rightGuess;
+    private MediaPlayer endWithoutHighscore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +134,7 @@ public class FindAnagram extends AppCompatActivity {
         timeOver = MediaPlayer.create(getApplicationContext(), R.raw.tumble1);
         wrongGuess = MediaPlayer.create(getApplicationContext(), R.raw.tumble2);
         rightGuess = MediaPlayer.create(getApplicationContext(), R.raw.cheer);
+        endWithoutHighscore = MediaPlayer.create(getApplicationContext(), R.raw.duck);
 
         aGuess.setOnEditorActionListener(editorListener);
 
@@ -164,6 +166,9 @@ public class FindAnagram extends AppCompatActivity {
         stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(highScoreUpdated == 0 && muteStatus == 0) {
+                    endWithoutHighscore.start();
+                }
                 gameActive = false;
                 updateFinalHighScore();
                 timer.cancel();
