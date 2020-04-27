@@ -7,6 +7,7 @@
     android:layout_weight="1"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
+    android:background="@drawable/anagrambackground"
     tools:context=".anagram.FindAnagram">
 
     <RelativeLayout
@@ -28,7 +29,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/appuser"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
+                app:civ_border_color="@color/bottlegreen"/>
 
         </LinearLayout>
 
@@ -38,13 +39,6 @@
             android:orientation="vertical"
             android:layout_marginTop="100dp"
             android:padding="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/radio_button_2"
-                android:textSize="42dp"
-                android:fontFamily="@font/zorque"></TextView>
 
             <ProgressBar
                 android:layout_width="match_parent"
@@ -69,7 +63,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="!sdrow eht sseuG"
+                android:text="GEUSS WRODS!"
+                android:textColor="@color/bottlegreen"
                 android:id="@+id/clue"
                 android:textSize="26dp"
                 android:layout_marginTop="12dp"
@@ -172,7 +167,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/sendicon"
+                android:src="@drawable/sendiconnew"
                 android:id="@+id/b_check"
                 android:visibility="gone"></ImageView>
 
@@ -188,6 +183,7 @@
             android:textSize="30dp"
             android:layout_marginBottom="50dp"
             android:layout_marginRight="10dp"
+            android:textColor="@color/black"
             android:id="@+id/highestScore"></TextView>
 
         <TextView
@@ -200,6 +196,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
             android:id="@+id/currentScore"></TextView>
 
         <TextView
@@ -212,7 +209,7 @@
             android:gravity="center_horizontal"
             android:text="@string/watermark"
             android:id="@+id/quarantined"
-            android:textColor="@color/red"
+            android:textColor="@color/bottlegreen"
             android:textSize="@dimen/watermark_size" />
 
     </RelativeLayout>
