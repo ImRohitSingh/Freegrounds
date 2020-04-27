@@ -135,6 +135,7 @@ public class SigninLayout extends AppCompatDialogFragment {
 
             // Signed in successfully, show authenticated UI.
             updateSigninStatus();
+            Toast.makeText(getContext(), "Successfully Signed In", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             getActivity().finish();
