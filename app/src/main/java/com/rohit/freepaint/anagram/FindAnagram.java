@@ -172,6 +172,7 @@ public class FindAnagram extends AppCompatActivity {
                 gameActive = false;
                 updateFinalHighScore();
                 timer.cancel();
+                myTimer.cancel();
                 Toast.makeText(getApplicationContext(), "Total Score: " + score, Toast.LENGTH_SHORT).show();
                 finish();
                 startActivity(new Intent(getApplicationContext(), FindAnagram.class));
@@ -360,6 +361,10 @@ public class FindAnagram extends AppCompatActivity {
             if(gameActive) {
                 Toast.makeText(getApplicationContext(), "Total Score: " + score, Toast.LENGTH_SHORT).show();
                 updateFinalHighScore();
+            }
+            myTimer.cancel();
+            if(timer != null) {
+                timer.cancel();
             }
             back.cancel();
             super.onBackPressed();
