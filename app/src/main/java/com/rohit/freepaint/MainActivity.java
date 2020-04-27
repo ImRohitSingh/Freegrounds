@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.rohit.freepaint.anagram.FindAnagram;
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer dodger;
     MediaPlayer have_a_great_time;
 
+    private SignInButton signInButton;
+    private int RC_SIGN_IN = 0;
+
     private GoogleSignInClient mGoogleSignInClient;
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -74,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
         back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
+        signInButton = (SignInButton) findViewById(R.id.sign_in_button_main);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -82,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(getSigninStatus() == 1) {
             signOut.setVisibility(View.VISIBLE);
+        } else {
+            signInButton.setVisibility(View.VISIBLE);
         }
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
@@ -97,6 +108,18 @@ public class MainActivity extends AppCompatActivity {
 
             Glide.with(this).load(String.valueOf(personPhoto)).into(profileImage);
         }
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.sign_in_button_main:
+                        signIn();
+                        break;
+                    // ...
+                }
+            }
+        });
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateSigninStatus();
+                        updateSigninStatus(0);
                        Toast.makeText(getApplicationContext(), "Successfully Signed Out", Toast.LENGTH_LONG).show();
                        finish();
                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -216,10 +239,47 @@ public class MainActivity extends AppCompatActivity {
         return prefs.getInt("signin", 0);
     }
 
-    private void updateSigninStatus() {
+    private void updateSigninStatus(int status) {
         SharedPreferences prefs = getSharedPreferences("freegrounds", 0);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("signin", 0);
+        editor.putInt("signin", status);
         editor.apply();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            updateSigninStatus(1);
+            Toast.makeText(getApplicationContext(), "Successfully Signed In", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+            //updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("Error:", "signInResult:failed code=" + e.getStatusCode());
+            //updateUI(null);
+        }
+    }
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 }
