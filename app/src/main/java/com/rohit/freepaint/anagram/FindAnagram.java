@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.rohit.freepaint.R;
 
 import java.util.Arrays;
@@ -25,6 +31,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindAnagram extends AppCompatActivity {
 
@@ -91,6 +99,9 @@ public class FindAnagram extends AppCompatActivity {
     private MediaPlayer rightGuess;
     private MediaPlayer endWithoutHighscore;
 
+    private GoogleSignInClient mGoogleSignInClient;
+    private CircleImageView profileImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +112,8 @@ public class FindAnagram extends AppCompatActivity {
         playBtn = (ImageView) findViewById(R.id.playbutton);
         stopBtn = (ImageView) findViewById(R.id.stopbutton);
         clueBtn = (ImageView) findViewById(R.id.cluebtn);
+
+        profileImage = (CircleImageView) findViewById(R.id.profile_image_anagram);
 
         muteBtn = (ImageView) findViewById(R.id.mutebtn);
         unmuteBtn = (ImageView) findViewById(R.id.unmutebtn);
@@ -115,6 +128,24 @@ public class FindAnagram extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("anagram", MODE_PRIVATE);
         highScore.setText("HighScore: " + prefs.getInt("anagramhighscore", 0));
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            String personName = acct.getDisplayName();
+            String personGivenName = acct.getGivenName();
+            String personFamilyName = acct.getFamilyName();
+            String personEmail = acct.getEmail();
+            String personId = acct.getId();
+            Uri personPhoto = acct.getPhotoUrl();
+
+            Glide.with(this).load(String.valueOf(personPhoto)).into(profileImage);
+        }
 
         muteStatus = getMuteStatus();
         if(muteStatus == 0) {

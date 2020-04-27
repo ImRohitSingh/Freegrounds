@@ -44,6 +44,16 @@
                 android:orientation="vertical"
                 android:padding="15dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginBottom="30dp"
+                    android:id="@+id/welcomeTextMain"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/profile_image_main"
+                    android:textSize="@dimen/label"></TextView>
+
                 <!--<ImageView
                     android:layout_width="@dimen/width_menu_button"
                     android:layout_height="wrap_content"
@@ -179,6 +189,30 @@
                 android:id="@+id/quarantined"
                 android:textColor="@color/red"
                 android:textSize="@dimen/watermark_size" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/sign_out_button"
+                android:layout_width="@dimen/width_menu_button"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                fancy:fb_borderColor="@color/red"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/black"
+                fancy:fb_focusColor="@color/black"
+                fancy:fb_iconPosition="left"
+                fancy:fb_radius="30dp"
+                fancy:fb_text="Sign Out"
+                fancy:fb_textColor="@color/white"
+                fancy:fb_textFont="fonts/zorque.ttf"
+                fancy:fb_textSize="@dimen/size_menu_button"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
