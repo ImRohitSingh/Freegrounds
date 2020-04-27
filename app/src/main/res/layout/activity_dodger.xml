@@ -33,7 +33,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/appuser"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
+                app:civ_border_color="@color/deepgreen"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                 android:fontFamily="@font/zorque"
                 android:gravity="center_horizontal"
                 android:text="@string/watermark"
-                android:textColor="@color/black"
+                android:textColor="@color/deepgreen"
                 android:textSize="@dimen/watermark_size" />
 
             <ImageView

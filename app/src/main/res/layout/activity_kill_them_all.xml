@@ -24,7 +24,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/appuser"
         app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_color="@color/red"/>
     
     <TextView
         android:layout_width="wrap_content"
