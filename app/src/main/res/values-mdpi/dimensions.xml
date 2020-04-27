@@ -27,4 +27,6 @@
 
     <dimen name="welcomeText">20dp</dimen>
 
+    <dimen name="credits">20sp</dimen>
+
 </resources>

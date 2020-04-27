@@ -224,6 +224,16 @@
                 android:layout_alignParentLeft="true"
                 android:visibility="gone"/>
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/credits"
+                android:id="@+id/seecredits"></ImageView>
+
         </RelativeLayout>
 
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.rohit.freepaint.anagram.FindAnagram;
+import com.rohit.freepaint.credits.CreditsActivity;
 import com.rohit.freepaint.dodger.Dodger;
 import com.rohit.freepaint.killthemall.KillThemAllActivity;
 import com.rohit.freepaint.paint.FreePaint;
@@ -51,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer paint;
     MediaPlayer killthemall;
     MediaPlayer dodger;
+    MediaPlayer anagram;
     MediaPlayer have_a_great_time;
+
+    private ImageView credits;
 
     private SignInButton signInButton;
     private int RC_SIGN_IN = 0;
@@ -76,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
         paint = MediaPlayer.create(getApplicationContext(), R.raw.paint);
         killthemall = MediaPlayer.create(getApplicationContext(), R.raw.killthemall);
         dodger = MediaPlayer.create(getApplicationContext(), R.raw.dodger);
+        anagram = MediaPlayer.create(getApplicationContext(), R.raw.short_guitar);
         have_a_great_time = MediaPlayer.create(getApplicationContext(), R.raw.have_a_great_time);
+
+        credits = (ImageView) findViewById(R.id.seecredits);
 
         back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
@@ -134,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), CreditsActivity.class));
+            }
+        });
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefreshmain);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -177,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 progressBar.setVisibility(View.GONE);
+                anagram.start();
                 Intent intent = new Intent(getApplicationContext(), FindAnagram.class);
                 startActivity(intent);
             }}, 1500);
