@@ -102,6 +102,8 @@ public class FindAnagram extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private CircleImageView profileImage;
 
+    private CircleImageView anagramLogo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +116,7 @@ public class FindAnagram extends AppCompatActivity {
         clueBtn = (ImageView) findViewById(R.id.cluebtn);
 
         profileImage = (CircleImageView) findViewById(R.id.profile_image_anagram);
+        anagramLogo = (CircleImageView) findViewById(R.id.anagram_logo);
 
         muteBtn = (ImageView) findViewById(R.id.mutebtn);
         unmuteBtn = (ImageView) findViewById(R.id.unmutebtn);
@@ -219,6 +222,7 @@ public class FindAnagram extends AppCompatActivity {
                 stopBtn.setVisibility(View.VISIBLE);
                 clueBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.GONE);
+                anagramLogo.setVisibility(View.GONE);
                 pb.setVisibility(View.VISIBLE);
                 aGuess.setVisibility(View.VISIBLE);
                 loadGame();

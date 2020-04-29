@@ -63,12 +63,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GEUSS WRODS!"
+                android:text=""
                 android:textColor="@color/bottlegreen"
                 android:id="@+id/clue"
                 android:textSize="26dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/zorque"></TextView>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/anagram_logo"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/anagramwords" />
 
             <TextView
                 android:layout_width="wrap_content"

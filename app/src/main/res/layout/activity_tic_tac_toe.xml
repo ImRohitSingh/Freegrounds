@@ -40,19 +40,6 @@
             android:layout_alignParentStart="true"
             android:gravity="center">
 
-            <Switch
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:switchMinWidth="40dp"
-                android:fontFamily="@font/zorque"
-                android:id="@+id/difficulty_ttt"
-                android:text=""
-                android:gravity="center"
-                android:checked="false"
-                android:textOff="Easy"
-                android:textOn="Hard"></Switch>
-
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btn_singlePlayer"
                 android:layout_width="@dimen/width_menu_button"
@@ -150,6 +137,24 @@
             android:text="@string/watermark"
             android:textColor="@color/blue"
             android:textSize="@dimen/watermark_size" />
+
+        <Switch
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:switchMinWidth="40dp"
+            android:fontFamily="@font/zorque"
+            android:id="@+id/difficulty_ttt"
+            android:text=""
+            android:textColor="@color/blue"
+            android:background="@drawable/difficulty_ttt"
+            android:gravity="center"
+            android:checked="false"
+            android:textOff="Easy"
+            android:textOn="Hard"></Switch>
 
         <ImageView
             android:layout_width="57dp"

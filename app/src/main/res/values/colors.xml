@@ -7,6 +7,7 @@
     <color name="blackFocus">#000305de</color>
     <color name="white">#ffffff</color>
     <color name="blue">#4081af</color>
+    <color name="blueFocus">#214081AF</color>
     <color name="red">#b80009</color>
     <color name="redfocus">#d8232f</color>
     <color name="gray">#A9A9A9</color>
