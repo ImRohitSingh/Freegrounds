@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,6 +36,8 @@ public class TicTacToe extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private CircleImageView profileImage;
 
+    private Switch difficultyLevel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,8 @@ public class TicTacToe extends AppCompatActivity {
         unmuteBtn = (ImageView) findViewById(R.id.tttunmutebtn);
 
         profileImage = (CircleImageView) findViewById(R.id.profile_image_ttt);
+
+        difficultyLevel = (Switch) findViewById(R.id.difficulty_ttt);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -83,6 +89,29 @@ public class TicTacToe extends AppCompatActivity {
                 unmuteBtn.setVisibility(View.GONE);
                 muteBtn.setVisibility(View.VISIBLE);
                 updateMuteStatus(0);
+            }
+        });
+
+        if(getDifficultyLevel() == 0) {
+            difficultyLevel.setChecked(false);
+            difficultyLevel.setText("Easy");
+        } else {
+            difficultyLevel.setChecked(true);
+            difficultyLevel.setText("Hard");
+        }
+
+        difficultyLevel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    updateDifficultyLevel(1);
+                    difficultyLevel.setChecked(true);
+                    difficultyLevel.setText("Hard");
+                } else {
+                    updateDifficultyLevel(0);
+                    difficultyLevel.setChecked(false);
+                    difficultyLevel.setText("Easy");
+                }
             }
         });
 
@@ -131,6 +160,18 @@ public class TicTacToe extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("tttgame", 0);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("tttgamemmute", status);
+        editor.apply();
+    }
+
+    private int getDifficultyLevel() {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        return prefs.getInt("tttdifficulty", 0);
+    }
+
+    private void updateDifficultyLevel(int status) {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("tttdifficulty", status);
         editor.apply();
     }
 }

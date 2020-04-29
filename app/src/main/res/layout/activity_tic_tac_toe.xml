@@ -31,7 +31,6 @@
             app:civ_border_width="2dp"
             app:civ_border_color="@color/blue"/>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +39,19 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:gravity="center">
+
+            <Switch
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:switchMinWidth="40dp"
+                android:fontFamily="@font/zorque"
+                android:id="@+id/difficulty_ttt"
+                android:text=""
+                android:gravity="center"
+                android:checked="false"
+                android:textOff="Easy"
+                android:textOn="Hard"></Switch>
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btn_singlePlayer"

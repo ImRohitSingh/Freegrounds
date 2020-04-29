@@ -34,13 +34,14 @@ public class CreditsActivity extends AppCompatActivity {
                 "And also has an Anagram game to guess a word within a given time.\n" +
                 "Authored By: Rohit Singh\n" +
                 "The following mentions helped me:\n" +
+                "Android's official documentation\n" +
                 "Google's official documentation\n" +
                 "Call particular method at regular intervals - Stackoverflow\n" +
                 "Drawing mirrored bitmaps - Stackoverflow\n" +
                 "hdodenhof/CircleImageView - Github\n" +
                 "medyo/FancyButtons- Github\n" +
                 "OpenGameArt.org\n" +
-                "Youtube channels of - Philip Vujovic, Alro Developers, Stevdza San, Coding in Flow," +
+                "Youtube channels of - Philip Vujovic, Alro Developers, Stevdza San, Coding in Flow, " +
                 "AndroidMinutes, Tihomir RAdeff, Retro Chicken and Hey! Let's Code";
 
         creditsTextView = (TextView) findViewById(R.id.creditTexts);

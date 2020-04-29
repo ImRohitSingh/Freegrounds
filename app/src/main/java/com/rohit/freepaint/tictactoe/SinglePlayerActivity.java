@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.rohit.freepaint.R;
@@ -38,6 +39,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
     private MediaPlayer draw;
 
     private int matchStatus;
+    private int difficultyLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
         cheer = MediaPlayer.create(getApplicationContext(), R.raw.cheer);
         defeat = MediaPlayer.create(getApplicationContext(), R.raw.tumble3);
         draw = MediaPlayer.create(getApplicationContext(), R.raw.its_a_draw);
+
+        difficultyLevel = getDifficultyLevel();
 
         back = Toast.makeText(getApplicationContext(), "Press back again", Toast.LENGTH_SHORT);
 
@@ -117,6 +121,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
                 selectedImage.setImageResource(R.drawable.ttt_x);
                 Player1.add(selectedBlock);
                 activePlayer = 2;
+                CheckWinner();
                 if(playWithApp) {
                     AutoPlay();
                 }
@@ -124,10 +129,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
                 selectedImage.setImageResource(R.drawable.ttt_o);
                 Player2.add(selectedBlock);
                 activePlayer = 1;
+                CheckWinner();
             }
 
             selectedImage.setEnabled(false);
-            CheckWinner();
         }
     }
 
@@ -210,8 +215,13 @@ public class SinglePlayerActivity extends AppCompatActivity {
         } else {
             Random r = new Random();
             int randomIndex = r.nextInt(emptyBlocks.size());
-            int selectedBock = emptyBlocks.get(randomIndex);
+            int selectedBock;
 
+            if(difficultyLevel == 0) {
+                selectedBock = emptyBlocks.get(randomIndex);
+            } else {
+                selectedBock = findBestMove(emptyBlocks, randomIndex);
+            }
 
             ImageView selectedImage = (ImageView) findViewById(R.id.iv_11);
             switch (selectedBock) {
@@ -229,6 +239,103 @@ public class SinglePlayerActivity extends AppCompatActivity {
             }
             PlayGame(selectedBock, selectedImage);
         }
+    }
+
+    private int findBestMove(List<Integer> emptyBlocks, int randomIndex) {
+        int bestMove = 0;
+
+        /* ATTACK */
+        if(Player2.contains(1) && Player2.contains(2) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove; }
+        if(Player2.contains(2) && Player2.contains(3) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player2.contains(1) && Player2.contains(3) && emptyBlocks.contains(2)){ bestMove = 2; return bestMove; }
+
+        if(Player2.contains(4) && Player2.contains(5) && emptyBlocks.contains(6)){ bestMove = 6; return bestMove; }
+        if(Player2.contains(5) && Player2.contains(6) && emptyBlocks.contains(4)){ bestMove = 4; return bestMove; }
+        if(Player2.contains(4) && Player2.contains(6) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        if(Player2.contains(7) && Player2.contains(8) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player2.contains(8) && Player2.contains(9) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player2.contains(7) && Player2.contains(9) && emptyBlocks.contains(3)){ bestMove = 8; return bestMove; }
+
+        if(Player2.contains(1) && Player2.contains(4) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player2.contains(4) && Player2.contains(7) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player2.contains(1) && Player2.contains(7) && emptyBlocks.contains(4)){ bestMove = 4; return bestMove; }
+
+        if(Player2.contains(2) && Player2.contains(5) && emptyBlocks.contains(8)){ bestMove = 8; return bestMove; }
+        if(Player2.contains(5) && Player2.contains(8) && emptyBlocks.contains(2)){ bestMove = 2; return bestMove; }
+        if(Player2.contains(2) && Player2.contains(8) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        if(Player2.contains(3) && Player2.contains(6) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player2.contains(6) && Player2.contains(9) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove; }
+        if(Player2.contains(3) && Player2.contains(9) && emptyBlocks.contains(6)){ bestMove = 6; return bestMove; }
+
+        if(Player2.contains(1) && Player2.contains(5) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player2.contains(5) && Player2.contains(9) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player2.contains(1) && Player2.contains(9) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+
+        if(Player2.contains(3) && Player2.contains(5) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player2.contains(5) && Player2.contains(7) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove; }
+        if(Player2.contains(3) && Player2.contains(7) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        /* DEFENSE */
+        if(Player1.contains(1) && Player1.contains(2) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove;}
+        if(Player1.contains(2) && Player1.contains(3) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player1.contains(1) && Player1.contains(3) && emptyBlocks.contains(2)){ bestMove = 2; return bestMove; }
+
+        if(Player1.contains(4) && Player1.contains(5) && emptyBlocks.contains(6)){ bestMove = 6; return bestMove; }
+        if(Player1.contains(5) && Player1.contains(6) && emptyBlocks.contains(4)){ bestMove = 4; return bestMove; }
+        if(Player1.contains(4) && Player1.contains(6) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        if(Player1.contains(7) && Player1.contains(8) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player1.contains(8) && Player1.contains(9) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player1.contains(7) && Player1.contains(9) && emptyBlocks.contains(8)){ bestMove = 8; return bestMove; }
+
+        if(Player1.contains(1) && Player1.contains(4) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player1.contains(4) && Player1.contains(7) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player1.contains(1) && Player1.contains(7) && emptyBlocks.contains(4)){ bestMove = 4; return bestMove; }
+
+        if(Player1.contains(2) && Player1.contains(5) && emptyBlocks.contains(8)){ bestMove = 8; return bestMove; }
+        if(Player1.contains(5) && Player1.contains(8) && emptyBlocks.contains(2)){ bestMove = 2; return bestMove; }
+        if(Player1.contains(2) && Player1.contains(8) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        if(Player1.contains(3) && Player1.contains(6) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player1.contains(6) && Player1.contains(9) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove; }
+        if(Player1.contains(3) && Player1.contains(9) && emptyBlocks.contains(6)){ bestMove = 6; return bestMove; }
+
+        if(Player1.contains(1) && Player1.contains(5) && emptyBlocks.contains(9)){ bestMove = 9; return bestMove; }
+        if(Player1.contains(5) && Player1.contains(9) && emptyBlocks.contains(1)){ bestMove = 1; return bestMove; }
+        if(Player1.contains(1) && Player1.contains(9) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+
+        if(Player1.contains(3) && Player1.contains(5) && emptyBlocks.contains(7)){ bestMove = 7; return bestMove; }
+        if(Player1.contains(5) && Player1.contains(7) && emptyBlocks.contains(3)){ bestMove = 3; return bestMove; }
+        if(Player1.contains(3) && Player1.contains(7) && emptyBlocks.contains(5)){ bestMove = 5; return bestMove; }
+
+        /* OCCUPY CENTER */
+        if(emptyBlocks.contains(5)) {
+            bestMove = 5; return bestMove;
+        }
+
+        /* IMPROVISE */
+        if(Player1.contains(5)) {
+            if(emptyBlocks.contains(1) && !Player1.contains(1) && !Player2.contains(1) ) { bestMove = 1; return bestMove; }
+            if(emptyBlocks.contains(3) && !Player1.contains(3) && !Player2.contains(3) ) { bestMove = 3; return bestMove; }
+            if(emptyBlocks.contains(7) && !Player1.contains(7) && !Player2.contains(7) ) { bestMove = 7; return bestMove; }
+            if(emptyBlocks.contains(9) && !Player1.contains(9) && !Player2.contains(9) ) { bestMove = 9; return bestMove; }
+        }
+        if(Player2.contains(5)) {
+            if(emptyBlocks.contains(2) && !Player1.contains(2) && !Player2.contains(2) ) { bestMove = 2; return bestMove; }
+            if(emptyBlocks.contains(4) && !Player1.contains(4) && !Player2.contains(4) ) { bestMove = 4; return bestMove; }
+            if(emptyBlocks.contains(6) && !Player1.contains(6) && !Player2.contains(6) ) { bestMove = 6; return bestMove; }
+            if(emptyBlocks.contains(8) && !Player1.contains(8) && !Player2.contains(8) ) { bestMove = 8; return bestMove; }
+        }
+
+        if(bestMove == 0 || Player2.contains(bestMove)) {
+            bestMove = randomIndex;
+        }
+
+        return bestMove;
     }
 
     void ResetGame(){
@@ -312,5 +419,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
     private int getMuteStatus() {
         SharedPreferences prefs = getSharedPreferences("tttgame", 0);
         return prefs.getInt("tttgamemmute", 0);
+    }
+
+    private int getDifficultyLevel() {
+        SharedPreferences prefs = getSharedPreferences("tttgame", 0);
+        return prefs.getInt("tttdifficulty", 0);
     }
 }

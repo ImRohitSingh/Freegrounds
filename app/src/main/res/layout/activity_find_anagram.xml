@@ -77,7 +77,7 @@
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/wordsize"
-                android:fontFamily="@font/zorque"
+                android:fontFamily="casual"
                 android:layout_marginTop="20dp"
                 android:id="@+id/aWord"></TextView>
 
@@ -141,30 +141,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="@dimen/edittext"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:hint="Guess here"
+                android:hint="Guess here..."
+                android:textColorHint="@color/light_gray"
+                android:background="@drawable/input_field"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/wordsize"
                 android:ems="10"
                 android:layout_marginTop="@dimen/margintop"
                 android:inputType="textPersonName"
                 android:id="@+id/aGuess"
+                android:outlineSpotShadowColor="@color/red"
                 android:imeOptions="actionSend"
                 android:visibility="gone"></EditText>
 
             <ImageView
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/sendiconnew"
