@@ -10,24 +10,23 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="4dp"
-            android:text="Sign in with Google"
-            android:id="@+id/signin"
-            android:visibility="gone"></androidx.appcompat.widget.AppCompatButton>
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"/>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.AppCompat.ActionBar.TabBar"
+        android:id="@+id/progress_bar_signin"
+        android:visibility="gone">
+    </ProgressBar>
 
 </RelativeLayout>

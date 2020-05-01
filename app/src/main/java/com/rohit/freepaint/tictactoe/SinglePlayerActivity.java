@@ -324,7 +324,101 @@ public class SinglePlayerActivity extends AppCompatActivity {
             if(emptyBlocks.contains(7) && !Player1.contains(7) && !Player2.contains(7) ) { bestMove = 7; return bestMove; }
             if(emptyBlocks.contains(9) && !Player1.contains(9) && !Player2.contains(9) ) { bestMove = 9; return bestMove; }
         }
+
         if(Player2.contains(5)) {
+            if(Player1.contains(8) && Player1.contains(6) && Player1.contains(1) && !Player2.contains(3) && emptyBlocks.contains(3)) {
+                bestMove = 3; return bestMove;
+            }
+            if(Player1.contains(8) && Player1.contains(6) && Player1.contains(1) && !Player2.contains(9) && emptyBlocks.contains(9)) {
+                bestMove = 9; return bestMove;
+            }
+
+            if(Player1.contains(8) && Player1.contains(4) && Player1.contains(3) && !Player2.contains(1) && emptyBlocks.contains(1)) {
+                bestMove = 1; return bestMove;
+            }
+            if(Player1.contains(8) && Player1.contains(4) && Player1.contains(3) && !Player2.contains(7) && emptyBlocks.contains(7)) {
+                bestMove = 7; return bestMove;
+            }
+
+            if(Player1.contains(6) && Player1.contains(2) && Player1.contains(7) && !Player2.contains(1) && emptyBlocks.contains(1)) {
+                bestMove = 1; return bestMove;
+            }
+            if(Player1.contains(6) && Player1.contains(2) && Player1.contains(7) && !Player2.contains(3) && emptyBlocks.contains(3)) {
+                bestMove = 3; return bestMove;
+            }
+
+            if(Player1.contains(6) && Player1.contains(8) && Player1.contains(1) && !Player2.contains(7) && emptyBlocks.contains(7)) {
+                bestMove = 7; return bestMove;
+            }
+            if(Player1.contains(6) && Player1.contains(8) && Player1.contains(1) && !Player2.contains(9) && emptyBlocks.contains(9)) {
+                bestMove = 9; return bestMove;
+            }
+
+            if(Player1.contains(2) && Player1.contains(4) && Player1.contains(9) && !Player2.contains(1) && emptyBlocks.contains(1)) {
+                bestMove = 1; return bestMove;
+            }
+            if(Player1.contains(2) && Player1.contains(4) && Player1.contains(9) && !Player2.contains(3) && emptyBlocks.contains(3)) {
+                bestMove = 3; return bestMove;
+            }
+
+            if(Player1.contains(2) && Player1.contains(6) && Player1.contains(7) && !Player2.contains(3) && emptyBlocks.contains(3)) {
+                bestMove = 3; return bestMove;
+            }
+            if(Player1.contains(2) && Player1.contains(6) && Player1.contains(7) && !Player2.contains(9) && emptyBlocks.contains(9)) {
+                bestMove = 9; return bestMove;
+            }
+
+            if(Player1.contains(4) && Player1.contains(2) && Player1.contains(9) && !Player2.contains(1) && emptyBlocks.contains(1)) {
+                bestMove = 1; return bestMove;
+            }
+            if(Player1.contains(4) && Player1.contains(2) && Player1.contains(9) && !Player2.contains(3) && emptyBlocks.contains(3)) {
+                bestMove = 3; return bestMove;
+            }
+
+            if(Player1.contains(4) && Player1.contains(8) && Player1.contains(3) && !Player2.contains(7) && emptyBlocks.contains(7)) {
+                bestMove = 7; return bestMove;
+            }
+            if(Player1.contains(4) && Player1.contains(8) && Player1.contains(3) && !Player2.contains(9) && emptyBlocks.contains(9)) {
+                bestMove = 9; return bestMove;
+            }
+
+            if(Player1.contains(8) && Player1.contains(1) && !Player2.contains(4) && emptyBlocks.contains(4)) { bestMove = 4; return bestMove; }
+            if(Player1.contains(8) && Player1.contains(1) && !Player2.contains(7) && emptyBlocks.contains(7)) { bestMove = 7; return bestMove; }
+            if(Player1.contains(8) && Player1.contains(3) && !Player2.contains(6) && emptyBlocks.contains(6)) { bestMove = 6; return bestMove; }
+            if(Player1.contains(8) && Player1.contains(3) && !Player2.contains(9) && emptyBlocks.contains(9)) { bestMove = 9; return bestMove; }
+
+            if(Player1.contains(2) && Player1.contains(7) && !Player2.contains(1) && emptyBlocks.contains(1)) { bestMove = 1; return bestMove; }
+            if(Player1.contains(2) && Player1.contains(7) && !Player2.contains(4) && emptyBlocks.contains(4)) { bestMove = 4; return bestMove; }
+            if(Player1.contains(2) && Player1.contains(9) && !Player2.contains(3) && emptyBlocks.contains(3)) { bestMove = 6; return bestMove; }
+            if(Player1.contains(2) && Player1.contains(9) && !Player2.contains(6) && emptyBlocks.contains(6)) { bestMove = 6; return bestMove; }
+
+            if(Player1.contains(4) && Player1.contains(3) && !Player2.contains(1) && emptyBlocks.contains(1)) { bestMove = 1; return bestMove; }
+            if(Player1.contains(4) && Player1.contains(3) && !Player2.contains(2) && emptyBlocks.contains(2)) { bestMove = 2; return bestMove; }
+            if(Player1.contains(4) && Player1.contains(9) && !Player2.contains(7) && emptyBlocks.contains(7)) { bestMove = 7; return bestMove; }
+            if(Player1.contains(4) && Player1.contains(9) && !Player2.contains(8) && emptyBlocks.contains(8)) { bestMove = 8; return bestMove; }
+
+            if(Player1.contains(6) && Player1.contains(1) && !Player2.contains(2) && emptyBlocks.contains(2)) { bestMove = 2; return bestMove; }
+            if(Player1.contains(6) && Player1.contains(1) && !Player2.contains(3) && emptyBlocks.contains(3)) { bestMove = 3; return bestMove; }
+            if(Player1.contains(6) && Player1.contains(7) && !Player2.contains(8) && emptyBlocks.contains(8)) { bestMove = 8; return bestMove; }
+            if(Player1.contains(6) && Player1.contains(7) && !Player2.contains(9) && emptyBlocks.contains(9)) { bestMove = 9; return bestMove; }
+
+            if(Player1.contains(8) && Player1.contains(6) && !Player2.contains(9) && emptyBlocks.contains(9)) { bestMove = 9; return bestMove; }
+            if(Player1.contains(6) && Player1.contains(2) && !Player2.contains(3) && emptyBlocks.contains(3)) { bestMove = 3; return bestMove; }
+            if(Player1.contains(2) && Player1.contains(4) && !Player2.contains(1) && emptyBlocks.contains(1)) { bestMove = 1; return bestMove; }
+            if(Player1.contains(4) && Player1.contains(8) && !Player2.contains(7) && emptyBlocks.contains(7)) { bestMove = 7; return bestMove; }
+
+            if((Player1.contains(1) && Player1.contains(9)) || (Player1.contains(3) && Player1.contains(7))) {
+                if(!Player2.contains(2) && !Player1.contains(2) && emptyBlocks.contains(2)) { bestMove = 2; return bestMove; }
+                if(!Player2.contains(4) && !Player1.contains(4) && emptyBlocks.contains(4)) { bestMove = 4; return bestMove; }
+                if(!Player2.contains(6) && !Player1.contains(6) && emptyBlocks.contains(6)) { bestMove = 6; return bestMove; }
+                if(!Player2.contains(8) && !Player1.contains(8) && emptyBlocks.contains(8)) { bestMove = 8; return bestMove; }
+            }
+
+            if(emptyBlocks.contains(1) && !Player1.contains(1) && !Player2.contains(1) ) { bestMove = 1; return bestMove; }
+            if(emptyBlocks.contains(3) && !Player1.contains(3) && !Player2.contains(3) ) { bestMove = 3; return bestMove; }
+            if(emptyBlocks.contains(7) && !Player1.contains(7) && !Player2.contains(7) ) { bestMove = 7; return bestMove; }
+            if(emptyBlocks.contains(9) && !Player1.contains(9) && !Player2.contains(9) ) { bestMove = 9; return bestMove; }
+
             if(emptyBlocks.contains(2) && !Player1.contains(2) && !Player2.contains(2) ) { bestMove = 2; return bestMove; }
             if(emptyBlocks.contains(4) && !Player1.contains(4) && !Player2.contains(4) ) { bestMove = 4; return bestMove; }
             if(emptyBlocks.contains(6) && !Player1.contains(6) && !Player2.contains(6) ) { bestMove = 6; return bestMove; }

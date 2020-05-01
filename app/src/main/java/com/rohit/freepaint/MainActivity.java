@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.sign_in_button_main:
+                        progressBar.setVisibility(View.VISIBLE);
                         signIn();
                         break;
                     // ...
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (v.getId()) {
                     // ...
                     case R.id.sign_out_button:
+                        progressBar.setVisibility(View.VISIBLE);
                         signOut();
                         break;
                     // ...
@@ -167,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         updateSigninStatus(0);
                        Toast.makeText(getApplicationContext(), "Successfully Signed Out", Toast.LENGTH_LONG).show();
+                       progressBar.setVisibility(View.GONE);
                        finish();
                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
@@ -283,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
             updateSigninStatus(1);
             Toast.makeText(getApplicationContext(), "Successfully Signed In", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            progressBar.setVisibility(View.GONE);
             startActivity(intent);
             finish();
             //updateUI(account);

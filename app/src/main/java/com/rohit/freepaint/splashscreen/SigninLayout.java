@@ -10,13 +10,13 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -30,13 +30,14 @@ import com.rohit.freepaint.R;
 
 public class SigninLayout extends AppCompatDialogFragment {
 
-    AppCompatButton signin;
     private View view;
 
     private SignInButton signInButton;
 
     private GoogleSignInOptions gso;
     private GoogleSignInClient mGoogleSignInClient;
+
+    private ProgressBar progressBar;
 
     private int RC_SIGN_IN = 0;
 
@@ -49,6 +50,8 @@ public class SigninLayout extends AppCompatDialogFragment {
         view = inflater.inflate(R.layout.login_layout, null);
 
         final MediaPlayer snareRoll = MediaPlayer.create(view.getContext(), R.raw.snareroll);
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar_signin);
 
         signInButton = view.findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
@@ -80,19 +83,11 @@ public class SigninLayout extends AppCompatDialogFragment {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.sign_in_button:
+                        progressBar.setVisibility(View.VISIBLE);
                         signIn();
                         break;
                     // ...
                 }
-            }
-        });
-
-        signin = (AppCompatButton) view.findViewById(R.id.signin);
-
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Feature under development", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -137,6 +132,7 @@ public class SigninLayout extends AppCompatDialogFragment {
             updateSigninStatus();
             Toast.makeText(getContext(), "Successfully Signed In", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
+            progressBar.setVisibility(View.GONE);
             startActivity(intent);
             getActivity().finish();
             //updateUI(account);

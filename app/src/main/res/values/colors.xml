@@ -15,6 +15,7 @@
     <color name="green">#006400</color>
     <color name="bottlegreen">#69840B</color>
     <color name="bottlelightgreen">#7B69840B</color>
+    <color name="blackgreen">#AA2E3A02</color>
     <color name="deepgreen">#0FA50E</color>
 
 </resources>
