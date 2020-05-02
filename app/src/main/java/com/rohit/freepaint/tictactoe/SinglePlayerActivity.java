@@ -426,7 +426,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
         }
 
         if(bestMove == 0 || Player2.contains(bestMove)) {
-            bestMove = randomIndex;
+            bestMove = emptyBlocks.get(randomIndex);
         }
 
         return bestMove;
